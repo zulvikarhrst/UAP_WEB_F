@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UAP WEB</title>
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Kode</th>
+          <th>Barang</th> 
+          <th>Harga</th>
+        </tr>
+      </thead>
+      <tbody id="daftarBarang"></tbody>
+    </table>
+    
+</body> 
+    <h1>User Input</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                  <td>Masukan Kode : </td>
+                  <td><input type="text" id="angka1" /></td>
+                </tr>
+                <tr>
+                  <td>Banyak Barang : </td>
+                  <td><input type="text" id="angka2" /></td>
+                </tr>
+                <tr>
+                    <button onclick="Tambah()">Submit</button>
+                </tr>
+              </thead>
+            </table>
+            
+            <script>
+                const barang = {
+                  "001": { nama: "A", harga: 10000 },
+                  "002": { nama: "B", harga: 20000 },
+                  "003": { nama: "C", harga: 30000 },
+                };
+          
+                function tampilkanDaftarBarang() {
+                  const daftarBarangElement = document.getElementById("daftarBarang");
+          
+                  for (const kode in barang) {
+                    const { nama, harga } = barang[kode];
+          
+                    const row = document.createElement("tr");
+          
+                    const kodeCol = document.createElement("td");
+                    kodeCol.textContent = kode;
+                    row.appendChild(kodeCol);
+          
+                    const namaCol = document.createElement("td");
+                    namaCol.textContent = nama;
+                    row.appendChild(namaCol);
+          
+                    const hargaCol = document.createElement("td");
+                    hargaCol.textContent = harga;
+                    row.appendChild(hargaCol);
+          
+                    daftarBarangElement.appendChild(row);
+                  }
+                }
+          
+                function Tambah() {
+                  var kodeBarang = document.getElementById("angka1").value;
+                  var banyakBarang = document.getElementById("angka2").value;
+          
+                  if (barang.hasOwnProperty(kodeBarang)) {
+                    var hargaBarang = barang[kodeBarang].harga;
+          
+                    var total = banyakBarang * hargaBarang;
+          
+                    alert("total pembayarannya adalah" + total);
+          
+                    var jumlah = prompt("Masukan uang user: ");
+          
+                    var kembalian = jumlah - total;
+          
+                    alert("kembalian" + kembalian);
+                  } else {
+                    alert("Kode Barang invalid");
+                  }
+                }
+          
+                document.addEventListener("DOMContentLoaded", function () {
+                  tampilkanDaftarBarang();
+                });
+              </script>
+              </body> 
+</html>
